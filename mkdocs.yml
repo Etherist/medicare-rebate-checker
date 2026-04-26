@@ -1,0 +1,82 @@
+site_name: Medicare Rebate Eligibility Checker
+site_description: AI-powered Medicare rebate eligibility checker built with autonomous agents
+site_author: Senior Agent Engineer
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Installation: installation.md
+  - Architecture:
+      - Overview: architecture.md
+      - Agent Workflow: agent_workflow.md
+  - Development:
+      - Contributing: contributing.md
+      - Development Guide: development.md
+      - Testing: testing.md
+      - Configuration: configuration.md
+      - Deployment: deployment.md
+      - Monitoring: monitoring.md
+      - Troubleshooting: troubleshooting.md
+  - Reference:
+      - API Reference: api_reference.md
+      - Security: security.md
+      - Privacy: privacy.md
+      - Compliance: compliance.md
+      - Changelog: changelog.md
+      - Releases: releases.md
+      - Roadmap: roadmap.md
+  - Project:
+      - Code of Conduct: code-of-conduct.md
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fences_codeblock
+  - admonition
+  - toc:
+      permalink: true
+  - pymdownx.details
+
+plugins:
+  - search
+  - mermaid
+
+repo_name: your-username/medicare-rebate-checker
+repo_url: https://github.com/your-username/medicare-rebate-checker
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/your-username
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/in/your-profile

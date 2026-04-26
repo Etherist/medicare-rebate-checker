@@ -1,0 +1,66 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "medicare-rebate-checker"
+version = "1.0.0"
+description = "AI-Powered Medicare Rebate Eligibility Checker - Built with Agent Engineering"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Senior Agent Engineer", email = "dev@example.com"}
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Healthcare Professionals",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "fastapi>=0.109.0",
+    "uvicorn>=0.27.0",
+    "streamlit>=1.31.0",
+    "beautifulsoup4>=4.12.2",
+    "requests>=2.31.0",
+    "pandas>=2.2.0",
+    "numpy>=1.26.3",
+    "langchain>=0.1.0",
+    "langchain-community>=0.0.24",
+    "faiss-cpu>=1.8.0",
+    "jinja2>=3.1.3",
+    "weasyprint>=61.2",
+    "python-dotenv>=1.0.0",
+    "pydantic>=2.5.3",
+    "pytest>=7.4.4",
+    "pytest-cov>=4.1.0",
+    "pytest-asyncio>=0.23.3",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+    "mypy>=1.8.0",
+    "isort>=5.12.0",
+]
+
+[project.scripts]
+medicare-cli = "src.app.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.black]
+line-length = 100
+target-version = ['py310']
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"

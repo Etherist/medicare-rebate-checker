@@ -1,0 +1,302 @@
+{
+  "13200": {
+    "item_number": "13200",
+    "description": "GP Consultation (Level B)",
+    "category": "General Practice",
+    "schedule_fee": 39.75,
+    "rebate_percentage": 100,
+    "rules": {
+      "requires_referral": false,
+      "age_restriction": null,
+      "medicare_card_required": true,
+      "bulk_billing_eligible": true,
+      "after_hours_multiplier": 1.0
+    },
+    "notes": "Standard GP consultation for established patients"
+  },
+  "13000": {
+    "item_number": "13000",
+    "description": "GP Consultation (Level A)",
+    "category": "General Practice",
+    "schedule_fee": 27.7,
+    "rebate_percentage": 100,
+    "rules": {
+      "requires_referral": false,
+      "age_restriction": null,
+      "medicare_card_required": true,
+      "bulk_billing_eligible": true,
+      "after_hours_multiplier": 1.0
+    },
+    "notes": "Brief GP consultation for simple problems"
+  },
+  "0023": {
+    "item_number": "0023",
+    "description": "Attendance for a health assessment (45-49 years)",
+    "category": "Preventive Care",
+    "schedule_fee": 187.5,
+    "rebate_percentage": 100,
+    "rules": {
+      "requires_referral": false,
+      "age_restriction": "45-49",
+      "medicare_card_required": true,
+      "bulk_billing_eligible": true,
+      "after_hours_multiplier": 1.0
+    },
+    "notes": "Detailed health assessment for patients aged 45-49 years at risk of chronic disease"
+  },
+  "0701": {
+    "item_number": "0701",
+    "description": "Attendance for a health assessment (70+ years)",
+    "category": "Preventive Care",
+    "schedule_fee": 221.5,
+    "rebate_percentage": 100,
+    "rules": {
+      "requires_referral": false,
+      "age_restriction": "70+",
+      "medicare_card_required": true,
+      "bulk_billing_eligible": true,
+      "after_hours_multiplier": 1.0
+    },
+    "notes": "Comprehensive health assessment for patients aged 70+ years"
+  },
+  "10900": {
+    "item_number": "10900",
+    "description": "Eye examination and refraction",
+    "category": "Optometry",
+    "schedule_fee": 78.5,
+    "rebate_percentage": 100,
+    "rules": {
+      "requires_referral": false,
+      "age_restriction": null,
+      "medicare_card_required": true,
+      "bulk_billing_eligible": true,
+      "after_hours_multiplier": 1.0
+    },
+    "notes": "Routine eye examination by optometrist"
+  },
+  "10903": {
+    "item_number": "10903",
+    "description": "Ocular diagnostic test - visual fields",
+    "category": "Optometry",
+    "schedule_fee": 124.0,
+    "rebate_percentage": 100,
+    "rules": {
+      "requires_referral": true,
+      "age_restriction": null,
+      "medicare_card_required": true,
+      "bulk_billing_eligible": true,
+      "after_hours_multiplier": 1.0
+    },
+    "notes": "Requires referral from ophthalmologist or optometrist"
+  },
+  "11000": {
+    "item_number": "11000",
+    "description": "Dental examination",
+    "category": "Dental",
+    "schedule_fee": 65.0,
+    "rebate_percentage": 100,
+    "rules": {
+      "requires_referral": false,
+      "age_restriction": null,
+      "medicare_card_required": true,
+      "bulk_billing_eligible": true,
+      "after_hours_multiplier": 1.0
+    },
+    "notes": "Basic dental examination (limited rebate)"
+  },
+  "11400": {
+    "item_number": "11400",
+    "description": "Obstetric ultrasound - first trimester",
+    "category": "Radiology",
+    "schedule_fee": 150.0,
+    "rebate_percentage": 100,
+    "rules": {
+      "requires_referral": true,
+      "age_restriction": null,
+      "medicare_card_required": true,
+      "bulk_billing_eligible": true,
+      "after_hours_multiplier": 1.0
+    },
+    "notes": "Requires referral from GP or obstetrician"
+  },
+  "11500": {
+    "item_number": "11500",
+    "description": "Obstetric ultrasound - second trimester",
+    "category": "Radiology",
+    "schedule_fee": 180.0,
+    "rebate_percentage": 100,
+    "rules": {
+      "requires_referral": true,
+      "age_restriction": null,
+      "medicare_card_required": true,
+      "bulk_billing_eligible": true,
+      "after_hours_multiplier": 1.0
+    },
+    "notes": "Requires referral from GP or obstetrician"
+  },
+  "11600": {
+    "item_number": "11600",
+    "description": "Obstetric ultrasound - third trimester",
+    "category": "Radiology",
+    "schedule_fee": 165.0,
+    "rebate_percentage": 100,
+    "rules": {
+      "requires_referral": true,
+      "age_restriction": null,
+      "medicare_card_required": true,
+      "bulk_billing_eligible": true,
+      "after_hours_multiplier": 1.0
+    },
+    "notes": "Requires referral from GP or obstetrician"
+  },
+  "12000": {
+    "item_number": "12000",
+    "description": "Psychiatry consultation - short",
+    "category": "Mental Health",
+    "schedule_fee": 198.5,
+    "rebate_percentage": 100,
+    "rules": {
+      "requires_referral": true,
+      "age_restriction": null,
+      "medicare_card_required": true,
+      "bulk_billing_eligible": true,
+      "after_hours_multiplier": 1.0
+    },
+    "notes": "Requires referral from GP under Mental Health Treatment Plan"
+  },
+  "12100": {
+    "item_number": "12100",
+    "description": "Psychiatry consultation - standard",
+    "category": "Mental Health",
+    "schedule_fee": 298.5,
+    "rebate_percentage": 100,
+    "rules": {
+      "requires_referral": true,
+      "age_restriction": null,
+      "medicare_card_required": true,
+      "bulk_billing_eligible": true,
+      "after_hours_multiplier": 1.0
+    },
+    "notes": "Requires referral from GP under Mental Health Treatment Plan"
+  },
+  "20000": {
+    "item_number": "20000",
+    "description": "Cardiology consultation - initial",
+    "category": "Specialist",
+    "schedule_fee": 250.0,
+    "rebate_percentage": 100,
+    "rules": {
+      "requires_referral": true,
+      "age_restriction": null,
+      "medicare_card_required": true,
+      "bulk_billing_eligible": false,
+      "after_hours_multiplier": 1.0
+    },
+    "notes": "Requires referral from GP. May have out-of-pocket costs"
+  },
+  "20100": {
+    "item_number": "20100",
+    "description": "Cardiology consultation - follow-up",
+    "category": "Specialist",
+    "schedule_fee": 150.0,
+    "rebate_percentage": 100,
+    "rules": {
+      "requires_referral": true,
+      "age_restriction": null,
+      "medicare_card_required": true,
+      "bulk_billing_eligible": false,
+      "after_hours_multiplier": 1.0
+    },
+    "notes": "Requires referral from GP. May have out-of-pocket costs"
+  },
+  "20300": {
+    "item_number": "20300",
+    "description": "Dermatology consultation - initial",
+    "category": "Specialist",
+    "schedule_fee": 180.0,
+    "rebate_percentage": 100,
+    "rules": {
+      "requires_referral": true,
+      "age_restriction": null,
+      "medicare_card_required": true,
+      "bulk_billing_eligible": true,
+      "after_hours_multiplier": 1.0
+    },
+    "notes": "Requires referral from GP"
+  },
+  "20400": {
+    "item_number": "20400",
+    "description": "Orthopaedic consultation - initial",
+    "category": "Specialist",
+    "schedule_fee": 220.0,
+    "rebate_percentage": 100,
+    "rules": {
+      "requires_referral": true,
+      "age_restriction": null,
+      "medicare_card_required": true,
+      "bulk_billing_eligible": false,
+      "after_hours_multiplier": 1.0
+    },
+    "notes": "Requires referral from GP. May have out-of-pocket costs"
+  },
+  "20500": {
+    "item_number": "20500",
+    "description": "Neurology consultation - initial",
+    "category": "Specialist",
+    "schedule_fee": 240.0,
+    "rebate_percentage": 100,
+    "rules": {
+      "requires_referral": true,
+      "age_restriction": null,
+      "medicare_card_required": true,
+      "bulk_billing_eligible": false,
+      "after_hours_multiplier": 1.0
+    },
+    "notes": "Requires referral from GP. May have out-of-pocket costs"
+  },
+  "27000": {
+    "item_number": "27000",
+    "description": "Podiatry consultation",
+    "category": "Allied Health",
+    "schedule_fee": 65.0,
+    "rebate_percentage": 100,
+    "rules": {
+      "requires_referral": false,
+      "age_restriction": null,
+      "medicare_card_required": true,
+      "bulk_billing_eligible": true,
+      "after_hours_multiplier": 1.0
+    },
+    "notes": "Podiatry services - limited rebate available"
+  },
+  "28000": {
+    "item_number": "28000",
+    "description": "Physiotherapy consultation",
+    "category": "Allied Health",
+    "schedule_fee": 75.0,
+    "rebate_percentage": 100,
+    "rules": {
+      "requires_referral": false,
+      "age_restriction": null,
+      "medicare_card_required": true,
+      "bulk_billing_eligible": true,
+      "after_hours_multiplier": 1.0
+    },
+    "notes": "Physiotherapy services - limited rebate available"
+  },
+  "36000": {
+    "item_number": "36000",
+    "description": "Dietitian consultation",
+    "category": "Allied Health",
+    "schedule_fee": 65.0,
+    "rebate_percentage": 100,
+    "rules": {
+      "requires_referral": false,
+      "age_restriction": null,
+      "medicare_card_required": true,
+      "bulk_billing_eligible": true,
+      "after_hours_multiplier": 1.0
+    },
+    "notes": "Dietitian services - limited rebate available"
+  }
+}

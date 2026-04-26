@@ -1,0 +1,66 @@
+# Ruff configuration
+# https://docs.astral.sh/ruff/
+
+# Target Python version
+target-version = "py312"
+
+[lint]
+# Enable all rules by default
+select = ["ALL"]
+ignore = [
+    "D100",  # Missing docstring in public module (we use docstrings, but not all modules need them)
+    "D101",  # Missing docstring in public class
+    "D102",  # Missing docstring in public method
+    "D103",  # Missing docstring in public function
+    "D104",  # Missing docstring in public package
+    "D107",  # Missing docstring in __init__
+    "D203",  # 1 blank line required before class docstring (conflicts with D211)
+    "D212",  # Multi-line docstring summary should start at the first line (conflicts with D213)
+    "COM812", # Trailing comma missing (conflicts with formatter)
+    "ISC001", # Single line implicit string concatenation (conflicts with formatter)
+]
+
+# Allow autofix for all enabled rules
+fixable = ["ALL"]
+
+[lint.per-file-ignores]
+# Tests can have assertions, magic numbers, longer lines
+"tests/**" = [
+    "S101",   # Use of assert
+    "PLR2004",  # Magic value comparison
+    "PLR0913",  # Too many arguments
+    "PLR0912",  # Too many branches
+    "PLR0915",  # Too many statements
+    "ANN201",  # Missing return type annotation (we'll let tests use dynamic types)
+]
+
+# __init__ files can be empty
+"**/__init__.py" = ["F401", "D104"]
+
+# Scripts don't need extensive docstrings
+"scripts/*.py" = ["D100"]
+
+# Streamlit apps have st.set_page_config requirement
+"src/app/streamlit_app.py" = ["B027"]
+
+[lint.isort]
+# Match black's import sorting
+known-first-party = ["src", "agents", "app", "utils"]
+
+[lint.pydocstyle]
+# Use Google-style docstrings
+convention = "google"
+
+[format]
+# Like Black, use double quotes for strings
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+
+[lint.flake8-tidy-imports]
+# Disallow relative imports (enforce absolute imports)
+ban-relative-imports = "parents"
+
+[lint.mccabe]
+# Max complexity threshold
+max-complexity = 15

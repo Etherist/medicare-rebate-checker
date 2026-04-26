@@ -1,0 +1,80 @@
+# pre-commit configuration for automated quality checks
+# Run: pre-commit install (to set up git hooks)
+# Run: pre-commit run --all-files (to run on all files)
+
+default_language_version:
+  python: python3.12
+
+repos:
+  # Black: Uncompromising code formatter
+  - repo: https://github.com/psf/black
+    rev: 24.10.0
+    hooks:
+      - id: black
+        language_version: python3.12
+        args: [--line-length=100]
+
+  # isort: Import sorter
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        args: [--profile=black, --line-length=100]
+
+  # Ruff: Fast Python linter
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.8.4
+    hooks:
+      - id: ruff
+        args: [--fix, --exit-non-zero-on-fix]
+
+  # mypy: Static type checker
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.13.0
+    hooks:
+      - id: mypy
+        additional_dependencies:
+          - fastapi
+          - pydantic
+          - pytest
+        args: [--ignore-missing-imports, --strict]
+        exclude: ^tests/
+
+  # Check YAML syntax
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.35.1
+    hooks:
+      - id: yamllint
+        args: [--strict]
+
+  # Check for large files
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-yaml
+      - id: check-toml
+      - id: check-json
+      - id: check-added-large-files
+        args: ['--maxkb=500']
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+
+  # pytest: Run test suite
+  - repo: local
+    hooks:
+      - id: pytest
+        name: pytest
+        entry: pytest
+        args: [tests/, -v]
+        pass_filenames: false
+        language: system
+        always_run: true
+
+  # Security scan (optional, runs on push)
+  - repo: https://github.com/Lucas-C/pre-commit-hooks-bandit
+    rev: v1.0.6
+    hooks:
+      - id: bandit
+        args: [-r, src/, -llx]
+        exclude: ^tests/

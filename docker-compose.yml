@@ -1,0 +1,88 @@
+# Docker Compose for local development environment
+version: '3.8'
+
+services:
+  # Redis cache (optional but recommended)
+  redis:
+    image: redis:7-alpine
+    container_name: medicare-checker-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes --requirepass ""
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # FastAPI backend
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+    container_name: medicare-checker-api
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_ENV=development
+      - LOG_LEVEL=DEBUG
+      - MBS_CACHE_ENABLED=true
+      - MBS_CACHE_REDIS_URL=redis://redis:6379
+      - REDIS_URL=redis://redis:6379
+    volumes:
+      - ./src:/app/src:ro  # Read-only mount for live reload
+      - ./reports:/app/reports
+      - ./scripts:/app/scripts:ro
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    command: >
+      sh -c "
+        python -m pip install --upgrade pytest black ruff mypy && 
+        python -m uvicorn src.app.main:app --host 0.0.0.0 --port 8000 --reload
+      "
+
+  # Streamlit web UI
+  streamlit:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+    container_name: medicare-checker-streamlit
+    ports:
+      - "8501:8501"
+    environment:
+      - APP_ENV=development
+      - LOG_LEVEL=DEBUG
+      - MBS_CACHE_ENABLED=true
+      - MBS_CACHE_REDIS_URL=redis://redis:6379
+    volumes:
+      - ./src:/app/src:ro
+      - ./reports:/app/reports
+      - ./scripts:/app/scripts:ro
+    depends_on:
+      - redis
+      - api
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    command: >
+      sh -c "
+        streamlit run src/app/streamlit_app.py --server.port 8501 --server.address 0.0.0.0
+      "
+
+volumes:
+  redis_data:
+    driver: local

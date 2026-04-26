@@ -1,0 +1,1 @@
+"""Medicare Rebate Checker Application."""

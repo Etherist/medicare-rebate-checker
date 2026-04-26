@@ -1,0 +1,21 @@
+# FUNDING.yml
+#
+# This file is used to display sponsorship options on GitHub.
+# See https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/displaying-a-sponsor-button-in-your-repository
+#
+# Example configurations:
+
+# GitHub Sponsors
+# github: your-username
+
+# Ko-fi
+# kofi: your-kofi-username
+
+# Open Collective
+# open_collective: project-name
+
+# Custom sponsor URL
+# custom: https://your-donation-page.com
+
+# Currently, this project is not accepting sponsorship but the template is provided for future use.
+# Uncomment and configure the appropriate line above when ready.

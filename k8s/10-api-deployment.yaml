@@ -1,0 +1,156 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: medicare-checker-api
+  namespace: healthcare
+  labels:
+    app: medicare-checker
+    component: api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: medicare-checker
+      component: api
+  template:
+    metadata:
+      labels:
+        app: medicare-checker
+        component: api
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8000"
+        prometheus.io/path: "/metrics"
+    spec:
+      containers:
+      - name: api
+        image: medicare-rebate-checker:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8000
+          name: http
+        env:
+        - name: APP_ENV
+          valueFrom:
+            configMapKeyRef:
+              name: medicare-checker-config
+              key: APP_ENV
+        - name: LOG_LEVEL
+          valueFrom:
+            configMapKeyRef:
+              name: medicare-checker-config
+              key: LOG_LEVEL
+        - name: MBS_CACHE_ENABLED
+          valueFrom:
+            configMapKeyRef:
+              name: medicare-checker-config
+              key: MBS_CACHE_ENABLED
+        - name: MBS_CACHE_REDIS_URL
+          value: "redis://:$${REDIS_PASSWORD}@medicare-checker-redis:6379"
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: medicare-checker-secret
+              key: REDIS_PASSWORD
+        - name: RATE_LIMIT_REQUESTS
+          value: "100"
+        - name: RATE_LIMIT_WINDOW
+          value: "3600"
+        volumeMounts:
+        - name: reports
+          mountPath: /app/reports
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: medicare-checker-api
+  namespace: healthcare
+  labels:
+    app: medicare-checker
+spec:
+  type: ClusterIP
+  ports:
+  - port: 8000
+    targetPort: 8000
+    protocol: TCP
+    name: http
+  selector:
+    app: medicare-checker
+    component: api
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: medicare-checker-ingress
+  namespace: healthcare
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  tls:
+  - hosts:
+    - medicare-checker.example.com  # CHANGE THIS
+    secretName: medicare-checker-tls
+  rules:
+  - host: medicare-checker.example.com  # CHANGE THIS
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: medicare-checker-api
+            port:
+              number: 8000
+
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: medicare-checker-api-hpa
+  namespace: healthcare
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: medicare-checker-api
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 80
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 85
