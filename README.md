@@ -358,11 +358,10 @@ git push origin feature/agent-enhancement
 
 ## 📬 Professional Contact
 
-- **GitHub**: [@your-username](https://github.com/your-username)
-- **LinkedIn**: [Your Profile](https://linkedin.com/in/your-profile)
-- **Portfolio**: [your-domain.com](https://your-domain.com)
-- **Email**: opensource@your-domain.com
-
+- **GitHub**: [@Etherist](https://github.com/Etherist)
+- **LinkedIn**: [Your Profile](https://www.linkedin.com/in/robert-b-7aba31a/)
+- **Portfolio**: [perspicacious.au](https://perspicacious.au)
+- **Email**: perspicacious@tuta.io
 ---
 
 ## 🎯 Advanced Talking Points for Technical Interviews
