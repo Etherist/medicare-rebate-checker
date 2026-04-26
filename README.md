@@ -359,7 +359,7 @@ git push origin feature/agent-enhancement
 ## 📬 Professional Contact
 
 - **GitHub**: [@Etherist](https://github.com/Etherist)
-- **LinkedIn**: [Your Profile](https://www.linkedin.com/in/robert-b-7aba31a/)
+- **LinkedIn**: [My LinkedIn Profile](https://www.linkedin.com/in/robert-b-7aba31a/)
 - **Portfolio**: [perspicacious.au](https://perspicacious.au)
 - **Email**: perspicacious@tuta.io
 ---
